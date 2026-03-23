@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*$py.class
+tasks.db
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/

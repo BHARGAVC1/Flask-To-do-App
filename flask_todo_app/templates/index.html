@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Todo App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    
+    <main class="glass-container">
+        <header>
+            <h1>My Tasks</h1>
+            <p class="subtitle">Organize your day with style.</p>
+        </header>
+        
+        <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="What needs to be done?" required autocomplete="off">
+            <button type="submit" id="add-btn">Add</button>
+        </form>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+        
+        <ul id="todo-list">
+            <!-- Tasks injected dynamically here -->
+        </ul>
+
+        <div class="actions-footer">
+            <button id="clear-completed-btn" title="Delete all completed tasks">Clear Completed</button>
+        </div>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
