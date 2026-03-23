@@ -118,29 +118,33 @@ document.addEventListener('DOMContentLoaded', () => {
         contentDiv.appendChild(checkbox);
         contentDiv.appendChild(textSpan);
 
-        // Toggle completion
+        // Complete and delete immediately
         contentDiv.addEventListener('click', async () => {
             try {
-                const res = await fetch(`/api/tasks/${task.id}`, { method: 'PUT' });
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.completed) {
-                        li.classList.add('completed');
-                    } else {
-                        li.classList.remove('completed');
-                    }
-                    
-                    // Sync local storage
-                    let localTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-                    const idx = localTasks.findIndex(t => t.id == task.id);
-                    if (idx > -1) {
-                        localTasks[idx].completed = data.completed;
+                li.classList.add('completed');
+                
+                // Set short delay to let checkmark animation show
+                setTimeout(async () => {
+                    li.classList.add('removing');
+                    try {
+                        await fetch(`/api/tasks/${task.id}`, { method: 'DELETE' });
+                        
+                        // Sync local storage
+                        let localTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+                        localTasks = localTasks.filter(t => t.id != task.id);
                         localStorage.setItem('tasks', JSON.stringify(localTasks));
+
+                        setTimeout(() => {
+                            li.remove();
+                            applyFilter();
+                        }, 300); // Wait for slideOut animation
+                    } catch (error) {
+                        console.error('Error deleting task:', error);
+                        li.classList.remove('removing');
                     }
-                    applyFilter();
-                }
+                }, 400); // 400ms delay to admire the checkmark
             } catch (error) {
-                console.error('Error toggling task:', error);
+                console.error('Error marking task complete:', error);
             }
         });
 
