@@ -12,37 +12,6 @@ It demonstrates how AI can be used to:
 * Automate testing workflows
 
 
-## 🏗️ Project Structure
-
-my-agv-project/
-│
-├── .agents/
-│   └── workflows/
-│       └── generate-unit-tests
-│
-├── .antigravity/
-│   └── skills/
-│       └── SKILL.md
-│
-├── flask_todo_app/
-│   ├── app/
-│   │   ├── routes/
-│   │   ├── static/
-│   │   ├── templates/
-│   │   ├── utils/
-│   │   ├── __init__.py
-│   │   └── models.py
-│   │
-│   ├── config.py
-│   ├── requirements.txt
-│   ├── run.py
-│   └── tasks.db
-│
-├── .gitignore
-└── README.md
-```
-
----
 
 ## ✨ Features
 
